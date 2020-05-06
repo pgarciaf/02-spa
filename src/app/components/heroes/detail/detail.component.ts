@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { HeroesService } from '../../../services/heroes.service';
+import { IHeroe } from '../heroes.component';
 
 @Component({
   selector: 'app-detail',
@@ -9,7 +10,8 @@ import { HeroesService } from '../../../services/heroes.service';
 })
 export class DetailComponent implements OnInit {
 
-  heroe: any = {};
+  heroe: IHeroe;
+
   constructor(private activatedRoute: ActivatedRoute,
               private heroesService: HeroesService) {
     this.activatedRoute.params.subscribe(params => {

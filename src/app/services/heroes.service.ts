@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { IHeroe } from '../components/heroes/heroes.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HeroesService {
 
-  private listHeroes: any[] = [
+  private listHeroes: IHeroe[] = [
     {
       nombre: 'Aquaman',
       bio: 'El poder más reconocido de Aquaman es la capacidad telepática para comunicarse con la vida marina, la cual puede convocar a grandes distancias.',
@@ -58,15 +59,28 @@ export class HeroesService {
   ];
 
   constructor() {
-    console.log('Servicio listo para usar !!!');
   }
 
-  getHeroes(){
+  getHeroes(): IHeroe[]{
     return this.listHeroes;
   }
 
-  getHeroe(idx: number){
-    console.log(idx);
+  getHeroe(idx: number): IHeroe{
     return this.listHeroes[idx];
   }
+
+  searchHeroe(valor: string){
+    valor = valor.toLocaleLowerCase();
+    let heroesArr: IHeroe[] = [];
+    for (let loHeroe of this.listHeroes) {
+      let nombre = loHeroe.nombre.toLowerCase();
+      if (nombre.indexOf(valor) >= 0) {
+        console.log(loHeroe.nombre);
+        heroesArr.push(loHeroe);
+      }
+    }
+    return heroesArr;
+  }
 }
+
+

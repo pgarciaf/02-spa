@@ -15,12 +15,20 @@ export class HeroesComponent implements OnInit {
 
   ngOnInit(): void {
     this.listHeroes = this.heroesService.getHeroes();
-    console.log(this.listHeroes);
   }
 
   verHeroe(idx: number){
-    console.log(idx);
     this.router.navigate(['/heroes/detail', idx]);
   }
 
+
+}
+
+
+export interface IHeroe{
+  nombre: string;
+  bio: string;
+  img: string;
+  aparicion: string;
+  casa: string;
 }
